@@ -1,9 +1,9 @@
-import { NavigationReactRouterDOM6 } from './routes/Navigation';
+import { NavigationReactRouterDOM5 } from './routes/Navigation';
 
 function App() {
   return (
     <>
-      <NavigationReactRouterDOM6 />
+      <NavigationReactRouterDOM5 />
     </>
   );
 }
