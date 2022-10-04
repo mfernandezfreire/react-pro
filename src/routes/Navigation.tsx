@@ -38,7 +38,7 @@ export const NavigationReactRouterDOM6 = () => {
                     <Route path="formik-basic" element={<FormikBasicPage />} />
                     <Route path="formik-yup" element={<FormikYupPage />} />
                     <Route path="formik-components" element={<FormikComponents />} />
-                    <Route path="/*" element={<Navigate to="home" replace />} />
+                    <Route path="/*" element={<Navigate to="register" replace />} />
                 </Routes>
 
             </div>
