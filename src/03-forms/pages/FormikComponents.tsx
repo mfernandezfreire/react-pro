@@ -14,20 +14,32 @@ export const FormikComponents = () => {
                 initialValues={{
                     firstName: '',
                     lastName: '',
-                    email: ''
+                    email: '',
+                    terms: false,
+                    jobType: ''
                 }}
                 onSubmit={(values) => {
                     console.log(values);
                 }}
                 validationSchema={Yup.object({
-                    firstName: Yup.string()
+                    firstName: Yup
+                        .string()
                         .max(15, 'Debe tener 15 caracteres o menos')
                         .required('Requerido'),
-                    lastName: Yup.string()
+                    lastName: Yup
+                        .string()
                         .max(10, 'Debe tener 10 caracteres o menos')
                         .required('Requerido'),
-                    email: Yup.string()
+                    email: Yup
+                        .string()
                         .email('Email no tiene un formato valido')
+                        .required('Requerido'),
+                    terms: Yup
+                        .boolean()
+                        .oneOf([true], 'Debe de aceptar las condiciones'),
+                    jobType: Yup
+                        .string()
+                        .notOneOf(['it-junior'], 'Esta opción no es permitida')
                         .required('Requerido')
                 })}
             >
@@ -35,7 +47,7 @@ export const FormikComponents = () => {
                     (formik) => (
                         <Form>
                             <label htmlFor="firstName">First Name</label>
-                            <Field name="firstName" type="text" />
+                            <Field name="firstName" type="text" placeholder="First Name" />
                             <ErrorMessage name="firstName" component="span" />
 
                             <label htmlFor="lastName">Last Name</label>
@@ -45,6 +57,24 @@ export const FormikComponents = () => {
                             <label htmlFor="email">Email Adress</label>
                             <Field name="email" type="email" />
                             <ErrorMessage name="email" component="span" />
+
+                            <label htmlFor="jobType">Job Type</label>
+                            <Field name="jobType" as="select" >
+                                <option value="developer">Pick Something</option>
+                                <option value="developer">Developer</option>
+                                <option value="designer">Designer</option>
+                                <option value="it-senior">IT Senior</option>
+                                <option value="it-junior">IT Junior</option>
+                            </Field>
+                            <ErrorMessage name="jobType" component="span" />
+
+
+                            <label htmlFor="terms">
+                                <Field name="terms" type="checkbox" />
+                                Terms and conditions
+                            </label>
+                            <ErrorMessage name="terms" component="span" />
+
 
                             <button type='submit'>Submit</button>
                         </Form>
